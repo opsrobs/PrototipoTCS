@@ -23,3 +23,4 @@ flask run
 (caso não tenha flask instalado execute este comando primeiro: pip install Flask)
 
 #com isso, deve iniciar normalmente.
+(em caso de erro tente instalar openai com o comando:  pip install openai)
