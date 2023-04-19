@@ -20,5 +20,6 @@ OPENAI_API_KEY= #Sua chave da API
 
 #Após isso, pode executar no terminal
 flask run 
+(caso não tenha flask instalado execute este comando primeiro: pip install Flask)
 
 #com isso, deve iniciar normalmente.
