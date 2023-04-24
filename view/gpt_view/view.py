@@ -34,4 +34,4 @@ def get_historias():
             'descricao': historia.descricao
         })
 
-    return jsonify(historias_json)
+    return render_template("gethistorias.html", result=historias_json)
