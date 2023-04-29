@@ -1,12 +1,16 @@
 from flask import Blueprint, jsonify, redirect, render_template, request, url_for
-from controller.controller import GptController
+from controller.gpt_controller.controller import GptController
+from controller.smell_controller.controller import SmellController
 from model.gpt import Gpt
+from model.gpt_has_smell import GptHasSmell
+from model.smell import RequirementSmell
 from model import db
 
 gpt_blueprint = Blueprint('gpt_view', __name__, template_folder="templates")
 
-gpt_blueprint.static_folder='gpt_view/static'
+
 gpt = GptController()
+smell = SmellController()
 
 @gpt_blueprint.route("/historias", methods=("GET", "POST"))
 def historias():
@@ -16,10 +20,19 @@ def historias():
         return redirect(url_for("gpt_view.historias", result=response.choices[0].text))
     
     result = request.args.get("result")
-    gpt_model = Gpt()
-    gpt_model.set_descricao(result)
-    db.session.add(gpt_model)
-    db.session.commit()
+    print(result)
+    if result != None:
+        gpt_model = Gpt()
+        smell_model = RequirementSmell()
+        gpt_has_smell = GptHasSmell()
+        gpt_model.set_historia_output(result)
+       # gpt_model.set_historia_input(prompt)
+        db.session.add(gpt_model)
+        db.session.commit()
+        ultimo_id = gpt_model.id
+        smells = smell.text_to_get_smells(model="gpt-3.5-turbo", prompt=result)
+        print(smells)
+        #Falta ir na model do smell e setar para que compare com que smell é, pra assim poder ser escolhido corretamente
     return render_template("gpt.html", result=result)
 
 
