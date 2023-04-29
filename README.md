@@ -29,6 +29,8 @@ flask run
 #Comandos de criacao pro banco de dados
 
 flask db init #Inicia o banco
+
 flask db migrate #Sobe as atualizacoes pra uma pasta chamada migrate
+
 flask db upgrade #executa as atualizacoes e sobe a nova versao do banco
 
