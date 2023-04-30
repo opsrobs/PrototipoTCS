@@ -22,7 +22,9 @@ class Gpt(db.Model):
         max_tokens=max_tokens,
         frequency_penalty=frequency_penalty,
         presence_penalty=presence_penalty)
+        print(response)
         return response
+    
     
     def __repr__(self) -> str:
         return "id: " + self.id
