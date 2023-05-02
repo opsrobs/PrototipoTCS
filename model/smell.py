@@ -14,7 +14,8 @@ class RequirementSmell(db.Model):
     def get_smell(self, prompt, model, get_smells):
         response = openai.ChatCompletion.create(
         model=model,
-        messages=[{ "role": "user", "content": '''Answer the storie below based on this parameters, answer with only the numbers correspondents to the storie
+        temperature=1,
+        messages=[{ "role": "user", "content": '''Below, various requirements smells will be listed. Compare them with the user story that will be given and return the numbers corresponding to the identified requirements smells in the story. If none are found, respond with the corresponding number listed above that indicates without smells.
                 {}
                 Storie: '''.format(* get_smells) + prompt }])
         return response

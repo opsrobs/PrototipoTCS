@@ -15,6 +15,11 @@ class SmellController:
             })
         return smell_json
 
+    def get_smell_by_id(self, id):
+        smell = self.smell.query.get(id)
+        smell_json = {"id": smell.id,
+                      "nome": smell.nome}
+        return smell_json
 
     def resume_data(self):
         smell_json = self.get_all_smells()
