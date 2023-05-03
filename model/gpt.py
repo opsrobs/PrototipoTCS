@@ -7,7 +7,7 @@ class Gpt(db.Model):
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     historia_input = db.Column(db.String(256))
-    historia_output = db.Column(db.String(500))
+    historia_output = db.Column(db.String(5000))
 
 
     def __init__(self):
@@ -22,7 +22,7 @@ class Gpt(db.Model):
     def completion(self, prompt, temperature, model, max_tokens, frequency_penalty = 0, presence_penalty = 0):
         response = openai.Completion.create(
         model=model,
-        prompt=prompt,
+        prompt="Padronize a seguinte historia de usuario seguinto o padrão de Mike Cohn: "+prompt,
         temperature=temperature,
         max_tokens=max_tokens,
         frequency_penalty=frequency_penalty,
