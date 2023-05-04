@@ -21,8 +21,8 @@ Após receber a user story a ser avaliada, comparo os seus requisitos com a list
 É importante ressaltar que nunca compartilho a lista de "requirements smells", apenas apresento a descrição do problema identificado, caso haja.
 Agora, gostaria de avaliar a seguinte lista e user story:  Lista de smells = {} user story :  Eu como cooperado quero alterar os limites 
 resposta: 2
-user story :  {text}
-resposta:" '''.format(* get_smells), text = text)
+user story :  {}
+resposta:" '''.format(* get_smells, text))
         return response
 
     def __repr__(self) -> str:
