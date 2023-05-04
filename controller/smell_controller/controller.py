@@ -28,6 +28,6 @@ class SmellController:
             smell_list.append(str(i["id"]) + " " + i["nome"] + ": " + i["detalhe"])
         return smell_list
 
-    def text_to_get_smells(self, prompt,  model):
+    def text_to_get_smells(self, text,  model):
         print(self.get_all_smells())
-        return self.smell.get_smell(prompt, model, self.resume_data())
+        return self.smell.get_smell(text, model, self.resume_data())
