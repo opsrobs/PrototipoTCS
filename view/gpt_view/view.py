@@ -26,7 +26,7 @@ def historias():
         db.session.commit()
         smells = smell.text_to_get_smells(model="gpt-3.5-turbo", prompt=historia_output)
         resultado = {"historia": response.choices[0].text, "smell": smells.choices[0].message['content']}
-        return render_template("gpt.html", result=resultado)
+        return jsonify(resultado)
     return render_template("gpt.html")
 
 
