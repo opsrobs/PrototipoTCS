@@ -15,8 +15,7 @@ class RequirementSmell(db.Model):
         response = openai.ChatCompletion.create(
         model=model,
         temperature=1,
-        messages=[{ "role": "user", "content": '''Below, various requirements smells will be listed. Compare them with the user story that will be given and return the numbers corresponding to the identified requirements smells in the story. If none are found, respond with the corresponding number listed above that indicates without smells.
-                {}
+        messages=[{ "role": "user", "content": '''Suponhamos que você é um avaliador de user stories e você é bastante critico no que diz respeito a requirements smells. Sempre que lhe é informada uma user storie você consulta uma lista de requirements smells que contem um id e os detalhes dos requirements. A partir dessa lista você compara a lista com a user storie enviada. Após ter feito a comparação retorne o id do smell que está presente e caso haja mais de um apresente os ids separados por virgula. caso não haja nenhum você retorna 8. Como avaliador foi lhe passada a seguinte lista + user storie:
                 Storie: '''.format(* get_smells) + prompt }])
         return response
     
