@@ -37,8 +37,9 @@ def get_historias():
     for historia in historias:
         historias_json.append({
             'id': historia.id,
-            'descricao': historia.descricao
+            'User Storie': historia.historia_input,
+            'User Storie padronizada': historia.historia_output,
         })
-
+    return jsonify(historias_json)
     return render_template("gethistorias.html", result=historias_json)
 

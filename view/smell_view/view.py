@@ -2,9 +2,12 @@ from flask import Blueprint, jsonify, redirect, render_template, request, url_fo
 from controller.smell_controller.controller import SmellController
 from controller.gpt_has_smell_controller.controller import GptHasSmellController
 from model.smell import RequirementSmell
+from flask_cors import CORS
 from model import db
 
 smell_blueprint = Blueprint('smell_view', __name__, template_folder="templates")
+CORS(smell_blueprint)
+
 
 smell_controller = SmellController()
 gpt_has_smell_controller = GptHasSmellController()
