@@ -22,7 +22,9 @@ class Gpt(db.Model):
     def completion(self, prompt, temperature, model, max_tokens, frequency_penalty = 0, presence_penalty = 0):
         response = openai.Completion.create(
         model=model,
-        prompt="Padronize a seguinte historia de usuario seguinto o padrão de Mike Cohn: "+prompt,
+        prompt='''Padronize a seguinte historia de usuario seguindo o padrão de Mike Cohn no seguinte formato:
+          User History:
+          [User History nos padrões do Mike Cohn]'''+prompt,
         temperature=temperature,
         max_tokens=max_tokens,
         frequency_penalty=frequency_penalty,

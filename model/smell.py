@@ -19,7 +19,7 @@ class RequirementSmell(db.Model):
             top_p= 0.1,
             max_tokens= 256,
             prompt='''Você receberá um conjunto de User Stories (histórias do usuário) e uma lista de "smells" (problemas) comuns encontrados em requisitos de software. Seu objetivo é identificar se cada User Story contém algum "smell" que corresponda à lista fornecida.
-Aqui está o formato esperado para a avaliação:
+Aqui está o fosrmato esperado para a avaliação:
 ID + Smells Encontrados:
 [IDs do smell + Lista de "smells" presentes na User Story, separados por vírgula + | Justificativa do smells encontrados]
 Se você identificar algum "smell" presente na User Story, enumere-o na seção "Smells Encontrados". Caso contrário, deixe a seção "Smells Encontrados" em branco.
