@@ -16,15 +16,18 @@ class RequirementSmell(db.Model):
         print(text)
         response = openai.Completion.create(
             model=model,
-            temperature=0.6,
-            #max_tokens: 256,
-            prompt='''Como avaliador de user stories, minha função é identificar possíveis problemas de qualidade nos requisitos apresentados. Para isso, utilizo uma lista de "requirements smells" que contém um identificador e uma descrição de cada possível problema. 
-Após receber a user story a ser avaliada, comparo os seus requisitos com a lista de "requirements smells". Caso identifique algum problema, retorno a descrição do "smell" encontrado trazendo detalhes, separando por vírgulas caso haja mais de um. Caso nenhum problema seja identificado, retorne "Não houveram smells identificados".
-É importante ressaltar que nunca compartilho a lista de "requirements smells", apenas apresento a descrição do problema identificado, caso haja.
-Agora, gostaria de avaliar a seguinte lista e user story:  Lista de smells = {}, user story :  Eu como cooperado quero alterar os limites 
-resposta: "Incomplete references" refere-se a referências ou termos não definidos ou incompletos em uma User Story. Isso pode causar confusão e dificuldade na compreensão dos requisitos. Para evitar esse problema, é importante garantir que todas as referências e termos utilizados sejam claramente definidos e compreendidos por todos os membros da equipe de desenvolvimento. Isso pode ser alcançado através de uma comunicação clara e do esclarecimento de dúvidas para garantir um entendimento comum dos requisitos;
-user story : como um desenvovedor, quero que uma user sotrie seja formatada quando eu clicar no botão submit
+            top_p= 0.1,
+            max_tokens= 256,
+            prompt='''Você receberá um conjunto de User Stories (histórias do usuário) e uma lista de "smells" (problemas) comuns encontrados em requisitos de software. Seu objetivo é identificar se cada User Story contém algum "smell" que corresponda à lista fornecida.
+Aqui está o fosrmato esperado para a avaliação:
+ID + Smells Encontrados:
+[IDs do smell + Lista de "smells" presentes na User Story, separados por vírgula + | Justificativa do smells encontrados]
+Se você identificar algum "smell" presente na User Story, enumere-o na seção "Smells Encontrados". Caso contrário, deixe a seção "Smells Encontrados" em branco.
+Lembre-se de que cada User Story pode conter mais de um "smell", portanto, verifique cuidadosamente cada uma delas.
+Aqui está a lista de "smells" a serem avaliados: {},
+user story : {}
 resposta: '''.format(* get_smells, text))
+        print(response)
         return response
 
     def __repr__(self) -> str:
