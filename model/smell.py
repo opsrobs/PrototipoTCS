@@ -20,14 +20,7 @@ class RequirementSmell(db.Model):
         Um problema que pode ocorrer nas histórias de usuário é a escrita feita de forma que cause má interpretação pelo desenvolvedor do sistema, o qual por sua vez pode acabar criando a funcionalidade de forma errada. 
         A partir de agora, irei chamar esses problemas de "requiriments smells". 
         Considere essa seguinte lista de requiriments smells:  
-        (id: 1, nome: gaps factor, detalhe: is characterized by scenarios that have one or more optional actions in the story.), 
-        (id: 2, nome: incomplete references, detalhe: occurs when artifacts such as complementary story content, such as documentation, technical terms or laws, are mentioned, but the references to these contents are not available or incomplete.), 
-        (id: 3, nome: problem orientation, detalhe: refers to the scenario in which a story presents only the problem by specifying it without any solution.), 
-        (id: 4, nome: comparative, superlative, and subjective language, detalhe: present specifications in comparison or subjective interpretations of the users needs.), 
-        (id: 5, nome: ambiguity, detalhe: can arise from the lack of verification of words that are not specific by nature and tend to cause more than one interpretation and make parameterization difficult.), 
-        (id: 6, nome: conflict, detalhe: occurs when two or more requirements cause inconsistencies between them.), 
-        (id: 7, nome: testable, detalhe: is detected in the absence or inaccuracy of the parameters specified in the stories that make it impossible to create metrics or parameters for testing.), 
-        (id: 8, nome: without errors, detalhe: This number indicates that none of the other options were selected.).
+        {}
         Repare que existem 8 requiriments smells, para cada um, separado por vírgulas, existe "id" "nome" e "detalhe". 
         É importante ressaltar que essa lista nunca deve ser repetida, apenas deve-se retornar o Requiriment Smell encontrado, no caso o "id" "nome" e "detalhe". 
         Caso encontre mais que um, separe-os com um ponto. 
@@ -37,8 +30,8 @@ class RequirementSmell(db.Model):
         2. Incomplete References. Occurs when artifacts such as complementary story content, such as documentation, technical terms or laws, are mentioned, but the references to these contents are not available or incomplete. 
         5. Ambiguity. Can arise from the lack of verification of words that are not specific by nature and tend to cause more than one interpretation and make parameterization difficult. 
         Então como mostrado no exemplo, ao enviar uma história de usuário, a mesma deve ser lida e comparada com a lista para verificar se algum dos requiriments smells é identificado. 
-        Agora que você sabe como fazer, verifique a seguinte História de Usuário: '''+textvar+''' 
-        resposta:'''#.format(str(text)) 
+        Agora que você sabe como fazer, verifique a seguinte História de Usuário: {}
+        resposta:'''.format(get_smells, textvar)
         response = openai.Completion.create(
             model=model,
             temperature=0.6,
