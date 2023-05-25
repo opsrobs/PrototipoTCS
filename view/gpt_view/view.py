@@ -17,7 +17,7 @@ def historias():
     if request.method == "POST":
         print(request.form["prompt"])
         prompt = request.form["prompt"]
-        response = gpt.text_to_completion(temperature= 1, prompt = prompt, model = "text-davinci-003", max_tokens=256)
+        response = gpt.text_to_completion(temperature= 0.5, prompt = prompt, model = "text-davinci-003", max_tokens=256)
         historia_output = response.choices[0].text
         gpt_model = Gpt()
         gpt_model.set_historia_output(historia_output)
