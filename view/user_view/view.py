@@ -24,3 +24,9 @@ def register_user():
         db.session.commit()
         return render_template('register.html')
     return render_template('register.html')
+
+@user_blueprint.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == 'POST':
+        return render_template("login.html")
+    return render_template("login.html")
