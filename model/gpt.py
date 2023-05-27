@@ -6,7 +6,7 @@ class Gpt(db.Model):
     __tablename__ = 'historias'
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    historia_input = db.Column(db.String(256))
+    historia_input = db.Column(db.String(5000))
     historia_output = db.Column(db.String(5000))
 
 
