@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, redirect, render_template, request, url_fo
 from model.user import User
 from controller.user_controller.controller import UserController
 from flask_cors import CORS
+from controller import helper
 from model import db
 
 user_blueprint = Blueprint('user_view', __name__, template_folder="templates")
@@ -30,3 +31,7 @@ def login():
     if request.method == 'POST':
         return render_template("login.html")
     return render_template("login.html")
+
+@user_blueprint.route("/auth", methods=["POST"])
+def authenticate():
+    return helper.auth()

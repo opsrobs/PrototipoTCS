@@ -3,7 +3,7 @@ from flask_cors import CORS
 from controller.gpt_controller.controller import GptController
 from controller.smell_controller.controller import SmellController
 from model.gpt import Gpt
-from model.gpt_has_smell import GptHasSmell
+from controller import helper
 from model import db
 
 gpt_blueprint = Blueprint('gpt_view', __name__, template_folder="templates")
@@ -12,8 +12,9 @@ CORS(gpt_blueprint)
 gpt = GptController()
 smell = SmellController()
 
-@gpt_blueprint.route("/historias", methods=["GET", "POST"])
-def historias():
+@gpt_blueprint.route("/historias?token=<token>", methods=["GET", "POST"])
+@helper.token_required
+def historias(current_user):
     if request.method == "POST":
         print(request.form["prompt"])
         prompt = request.form["prompt"]
@@ -27,7 +28,7 @@ def historias():
         smells = smell.text_to_get_smells(model="text-davinci-003", text=prompt)
         resultado = {"historia": response.choices[0].text, "smell": smells.choices[0].text}
         return jsonify(resultado)
-    return render_template("gpt.html")
+    return render_template("gpt.html", result=current_user.nome)
 
 
 @gpt_blueprint.route("/gethistorias")
