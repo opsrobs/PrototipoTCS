@@ -10,11 +10,12 @@ user_controller = UserController()
 
 def auth():
     auth = request.authorization
+    print(auth)
     if not auth or not auth.username or not auth.password:
         return jsonify({"message":"Náo foi possivel verificar", "Authenticate":"Login Requiredð"}), 401
     
     user = user_controller.filter_user_by_email(auth.username)
-    
+
     if not user: 
         return jsonify({"message": "usuario nao encontrado"}), 401
     

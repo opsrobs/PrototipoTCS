@@ -46,6 +46,5 @@ class RequirementSmell(db.Model):
         print('RESPONSE GPT: ')
         print(response)
         return response
-
     def __repr__(self) -> str:
         return "id: " + self.id + " nome: " + self.nome + " detalhe: " + self.detalhe
