@@ -10,7 +10,7 @@ user_controller = UserController()
 
 def auth():
     auth = request.authorization
-    print(auth)
+    print(auth, request)
     if not auth or not auth.username or not auth.password:
         return jsonify({"message":"Náo foi possivel verificar", "Authenticate":"Login Requiredð"}), 401
     
