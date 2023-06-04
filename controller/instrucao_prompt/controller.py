@@ -15,3 +15,9 @@ class PromptInstrucaoController:
         db.session.add(prompt_model)
         db.session.commit()
         return "Success"
+
+    def delete(self, instrucao_id):
+        instrucao = Prompts.query.get(instrucao_id)
+        db.session.delete(instrucao)
+        db.session.commit()
+        return "Deleted"

@@ -29,4 +29,8 @@ def nova_instrucao(current_user):
     prompt_controller.insert(current_user.id, instrucao)
     return jsonify({'message': 'success'}), 201
 
+@prompt_blueprint.route("/deleteinstrucao/<id>")
+def delete(id):
+    prompt_controller.delete(id)
+    return jsonify({"message":"successfully deleted"}), 200
         
