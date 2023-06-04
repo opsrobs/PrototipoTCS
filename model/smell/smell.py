@@ -1,7 +1,7 @@
 import os
 import openai
 from .. import db
-from prompt_default import *
+from model.smell.prompt_default import *
 
 
 class RequirementSmell(db.Model):
