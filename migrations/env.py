@@ -38,7 +38,7 @@ def get_engine_url():
 # target_metadata = mymodel.Base.metadata
 from model.gpt import Gpt
 from model.gpt_has_smell import GptHasSmell
-from model.smell import RequirementSmell
+from model.smell.smell import RequirementSmell
 from model.user import User
 from model.prompt import Prompts
 
