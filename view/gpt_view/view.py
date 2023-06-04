@@ -30,7 +30,7 @@ def historias(current_user):
     gpt_model.set_usuario_id(usuario_id=current_user.id)
     db.session.add(gpt_model)
     db.session.commit()
-    smells = smell.text_to_get_smells(model="text-davinci-003", text=prompt, instrucoes=prompt_instrucao.get_instrucoes())
+    smells = smell.text_to_get_smells(model="text-davinci-003", text=prompt, instrucoes=prompt_instrucao.get_instrucoes(current_user.id))
     resultado = {
         "historia": response.choices[0].text, "smell": smells.choices[0].text}
     return jsonify(resultado), 200
