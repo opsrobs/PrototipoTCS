@@ -2,7 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash
 
 class User(db.Model):
-    __tablename__ = "usuarios"
+    __tablename__ = "usuario"
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     nome = db.Column(db.String(80))

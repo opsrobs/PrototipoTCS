@@ -1,4 +1,4 @@
-from model.smell import RequirementSmell
+from model.smell.smell import RequirementSmell
 
 class SmellController:
     def __init__(self):
@@ -28,6 +28,6 @@ class SmellController:
             smell_list.append(str(i["id"]) + " " + i["nome"] + ": " + i["detalhe"])
         return smell_list
 
-    def text_to_get_smells(self, text,  model):
+    def text_to_get_smells(self, text,  model, instrucoes):
         print(self.get_all_smells())
-        return self.smell.get_smell(text, model, self.resume_data())
+        return self.smell.get_smell(text, model, self.resume_data(), instrucoes)
