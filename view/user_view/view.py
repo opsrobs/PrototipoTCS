@@ -11,29 +11,21 @@ CORS(user_blueprint)
 
 user_controller = UserController()
 
-@user_blueprint.route("/register", methods=["GET", "POST"])
+@user_blueprint.route("/register", methods=["POST"])
 def register_user():
-    if request.method == 'POST':
-        user_model = User()
-        nome = request.form['nome']
-        email = request.form['email']
-        senha = request.form['senha']
-        if user_controller.filter_user_by_email(email) != None:
-            return jsonify({'message': 'Este nome de usuario ja esta em uso'}), 401
-        user_model.set_email(email)
-        user_model.set_password(senha)
-        user_model.set_nome(nome)
-        db.session.add(user_model)
-        db.session.commit()
-        return render_template('register.html')
+    user_model = User()
+    nome = request.form['nome']
+    email = request.form['email']
+    senha = request.form['senha']
+    if user_controller.filter_user_by_email(email) != None:
+        return jsonify({'message': 'Este nome de usuario ja esta em uso'}), 401
+    user_model.set_email(email)
+    user_model.set_password(senha)
+    user_model.set_nome(nome)
+    db.session.add(user_model)
+    db.session.commit()
+    return jsonify({'message': 'success'}), 201
         
-    return render_template('register.html')
-
-@user_blueprint.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == 'POST':
-        return render_template("login.html")
-    return render_template("login.html")
 
 @user_blueprint.route("/auth", methods=["POST"])
 def authenticate():

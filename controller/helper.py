@@ -23,7 +23,7 @@ def auth():
         token = jwt.encode({'username': user.email, 'exp': datetime.datetime.now() + datetime.timedelta(hours=12)},
                            SECRET_KEY, algorithm="HS256")
         return jsonify({'message': 'Validado com sucesso', 'token': token,
-                        'exp': datetime.datetime.now() + datetime.timedelta(hours=12)})
+                        'exp': datetime.datetime.now() + datetime.timedelta(hours=12), 'nome': user.nome})
 
     return jsonify({'message': 'Nao foi possivel verificar', 'Authenticate': 'login necessario"'}), 401
 

@@ -19,6 +19,9 @@ class Gpt(db.Model):
     def set_historia_output(self, historia_output):
         self.historia_output = historia_output
 
+    def set_usuario_id(self, usuario_id):
+        self.usuario_id = usuario_id
+
     def completion(self, prompt, temperature, model, max_tokens, frequency_penalty = 0, presence_penalty = 0):
         response = openai.Completion.create(
         model=model,
