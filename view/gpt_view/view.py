@@ -12,7 +12,7 @@ CORS(gpt_blueprint)
 gpt = GptController()
 smell = SmellController()
 
-@gpt_blueprint.route("/historias?token=<token>", methods=["GET", "POST"])
+@gpt_blueprint.route("/historias", methods=["GET", "POST"])
 @helper.token_required
 def historias(current_user):
     if request.method == "POST":
