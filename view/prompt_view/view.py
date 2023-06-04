@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_cors import CORS
 from controller import helper
 from controller.instrucao_prompt.controller import PromptInstrucaoController
@@ -21,4 +21,12 @@ def get_instructions(current_user):
             'usuario_id': instrucao.usuario_id
         })
     return jsonify(instrucoes_json), 201
+
+@prompt_blueprint.route("/novainstrucao", methods=["POST"])
+@helper.token_required
+def nova_instrucao(current_user):
+    instrucao = request.form["instrucao"]
+    prompt_controller.insert(current_user.id, instrucao)
+    return jsonify({'message': 'success'}), 201
+
         
