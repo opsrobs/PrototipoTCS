@@ -3,12 +3,12 @@ import os
 from . import db
 
 class Gpt(db.Model):
-    __tablename__ = 'historias'
+    __tablename__ = 'historia'
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     historia_input = db.Column(db.String(5000))
     historia_output = db.Column(db.String(5000))
-
+    usuario_id = db.Column(db.Integer)
 
     def __init__(self):
         openai.api_key = os.getenv("OPENAI_API_KEY")

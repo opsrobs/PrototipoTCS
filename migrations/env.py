@@ -40,6 +40,7 @@ from model.gpt import Gpt
 from model.gpt_has_smell import GptHasSmell
 from model.smell import RequirementSmell
 from model.user import User
+from model.prompt import Prompts
 
 config.set_main_option('sqlalchemy.url', get_engine_url())
 target_db = current_app.extensions['migrate'].db

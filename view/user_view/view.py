@@ -18,12 +18,15 @@ def register_user():
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
+        if user_controller.filter_user_by_email(email) != None:
+            return jsonify({'message': 'Este nome de usuario ja esta em uso'}), 401
         user_model.set_email(email)
         user_model.set_password(senha)
         user_model.set_nome(nome)
         db.session.add(user_model)
         db.session.commit()
         return render_template('register.html')
+        
     return render_template('register.html')
 
 @user_blueprint.route("/login", methods=["GET", "POST"])

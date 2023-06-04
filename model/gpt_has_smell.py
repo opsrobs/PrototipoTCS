@@ -5,6 +5,7 @@ class GptHasSmell(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     id_gpt = db.Column(db.Integer)
     id_smell = db.Column(db.Integer)
+    descricao_smell = db.Column(db.String(5000))
 
     def set_id_gpt(self, id_gpt):
         self.id_gpt = id_gpt

@@ -4,7 +4,7 @@ from . import db
 
 
 class RequirementSmell(db.Model):
-    __tablename__ = "smells"
+    __tablename__ = "smell"
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     nome = db.Column(db.String(80))
     detalhe = db.Column(db.String(256))
