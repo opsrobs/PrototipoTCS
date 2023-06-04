@@ -31,8 +31,7 @@ def auth():
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        print(SECRET_KEY)
-        token = request.args.get('token')
+        token = request.args.get("token")
         if not token:
             return jsonify({'message':'token esta faltando'}), 401
         try:
