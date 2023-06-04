@@ -4,7 +4,6 @@ from .. import db
 from model.smell.prompt_default import *
 
 
-
 class RequirementSmell(db.Model):
     __tablename__ = "smell"
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)

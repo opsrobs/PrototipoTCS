@@ -1,9 +1,9 @@
-from flask import Blueprint, jsonify, redirect, render_template, request, url_for
+from flask import Blueprint, jsonify, request
 from flask_cors import CORS
 from controller.gpt_controller.controller import GptController
 from controller.smell_controller.controller import SmellController
 from controller.user_controller.controller import UserController
-from controller.instrucao_prompt.controller import PromptInstrucao
+from controller.instrucao_prompt.controller import PromptInstrucaoController
 from model.gpt import Gpt
 from controller import helper
 from model import db
@@ -14,7 +14,7 @@ CORS(gpt_blueprint)
 gpt = GptController()
 smell = SmellController()
 user_controller = UserController()
-prompt_instrucao = PromptInstrucao()
+prompt_instrucao = PromptInstrucaoController()
 
 
 @gpt_blueprint.route("/historias", methods=["POST"])
