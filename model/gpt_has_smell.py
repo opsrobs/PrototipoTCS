@@ -17,4 +17,4 @@ class GptHasSmell(db.Model):
         self.descricao_smell = descricao_smell
 
     def __repr__(self):
-        return "id_gpt: " + self.id_gpt + " id_smell: " + self.id_smell
+        return "id: " + self.id + " id_gpt: " + self.id_gpt + " id_smell: " + self.id_smell + " descricao_smell: " + self.descricao_smell
