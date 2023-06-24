@@ -4,6 +4,7 @@ from controller.gpt_controller.controller import GptController
 from controller.smell_controller.controller import SmellController
 from controller.user_controller.controller import UserController
 from controller.instrucao_prompt.controller import PromptInstrucaoController
+from controller.gpt_has_smell_controller.controller import GptHasSmellController
 from model.gpt import Gpt
 from controller import helper
 from model import db
@@ -15,6 +16,7 @@ gpt = GptController()
 smell = SmellController()
 user_controller = UserController()
 prompt_instrucao = PromptInstrucaoController()
+gpt_has_smells = GptHasSmellController()
 
 
 @gpt_blueprint.route("/historias", methods=["POST"])
@@ -33,6 +35,9 @@ def historias(current_user):
     smells = smell.text_to_get_smells(model="text-davinci-003", text=prompt, instrucoes=prompt_instrucao.get_instrucoes(current_user.id))
     resultado = {
         "historia": response.choices[0].text, "smell": smells.choices[0].text}
+    id_smells = smell.get_id_smells(resultado["smell"])
+    descricao_smells = smell.get_descricao_smells(resultado["smell"])
+    gpt_has_smells.post_smells(id_smells, descricao_smells, gpt_model.id)
     return jsonify(resultado), 200
 
 

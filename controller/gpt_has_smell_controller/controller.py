@@ -1,6 +1,11 @@
 from model.gpt_has_smell import GptHasSmell
+from model import db
 
 class GptHasSmellController:
+
+    def __init__(self):
+        self.gpt_has_smells = GptHasSmell()
+
     def get_all_gpt_has_smell(self):
         gpt_has_smell = GptHasSmell.query.all()
         gpt_smell_json = []
@@ -26,3 +31,13 @@ class GptHasSmellController:
         for chave, valor in id_smell_count.items():
             final_dict[smells[int(chave)-1]['nome']] = valor
         return final_dict
+
+    def post_smells(self, id_smells, descricao, id_historia):
+        self.gpt_has_smells.set_descricao_smell(descricao) 
+        for i in id_smells:
+            self.gpt_has_smells.set_id_smell(i)    
+            self.gpt_has_smells.set_id_smell(id_historia)     
+            db.session.add(self.gpt_has_smells)
+            db.session.commit()
+            self.gpt_has_smells.set_descricao_smell("") 
+        return "Success", 200
