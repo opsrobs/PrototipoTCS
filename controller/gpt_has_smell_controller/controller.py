@@ -34,10 +34,15 @@ class GptHasSmellController:
 
     def post_smells(self, id_smells, descricao, id_historia):
         self.gpt_has_smells.set_descricao_smell(descricao) 
+        print(id_smells)
+        print(descricao)
+        print(id_historia)
+        print("--------------------------------")
         for i in id_smells:
             self.gpt_has_smells.set_id_smell(i)    
+            print(i)
             self.gpt_has_smells.set_id_gpt(id_historia)     
+            self.gpt_has_smells.set_descricao_smell(descricao) 
             db.session.add(self.gpt_has_smells)
             db.session.commit()
-            self.gpt_has_smells.set_descricao_smell("") 
         return "Success", 200

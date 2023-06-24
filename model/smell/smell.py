@@ -19,8 +19,8 @@ class RequirementSmell(db.Model):
         {}/n{}/n Resposta: '''.format(PROMPT_DEFAULT, instrucoes, get_smells, PROMPT_FINAL, textvar)
         response = openai.Completion.create(
             model=model,
-            temperature=0.08,
-            top_p=0.3,
+            temperature=0.05,
+            top_p=0.1,
             max_tokens= 256,
             prompt=prompt_text)
         print('PROMPT: ')
