@@ -36,7 +36,7 @@ class GptHasSmellController:
         self.gpt_has_smells.set_descricao_smell(descricao) 
         for i in id_smells:
             self.gpt_has_smells.set_id_smell(i)    
-            self.gpt_has_smells.set_id_smell(id_historia)     
+            self.gpt_has_smells.set_id_gpt(id_historia)     
             db.session.add(self.gpt_has_smells)
             db.session.commit()
             self.gpt_has_smells.set_descricao_smell("") 
