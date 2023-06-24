@@ -1,4 +1,5 @@
 from model.smell.smell import RequirementSmell
+import re
 
 class SmellController:
     def __init__(self):
@@ -31,3 +32,10 @@ class SmellController:
     def text_to_get_smells(self, text,  model, instrucoes):
         print(self.get_all_smells())
         return self.smell.get_smell(text, model, self.resume_data(), instrucoes)
+    
+    def get_id_smells(self, text):
+        numeros = re.findall(r'\[(\d+)\]', text)
+        return [int(numero) for numero in numeros]
+
+    def get_descricao_smells(self, text):
+        return text.split('.', 1)[1].strip()
