@@ -11,8 +11,10 @@ class GptHasSmellController:
         gpt_smell_json = []
         for gpt_smell in gpt_has_smell:
             gpt_smell_json.append({
+                'id': gpt_smell.id,
                 'id_gpt': gpt_smell.id_gpt,
-                'id_smell': gpt_smell.id_smell
+                'id_smell': gpt_smell.id_smell,
+                'descricao_smell': gpt_smell.descricao_smell
             })
         return gpt_smell_json
     
@@ -33,11 +35,10 @@ class GptHasSmellController:
         return final_dict
 
     def post_smells(self, id_smells, descricao, id_historia):
-        self.gpt_has_smells.set_descricao_smell(descricao) 
         for i in id_smells:
             self.gpt_has_smells.set_id_smell(i)    
-            self.gpt_has_smells.set_id_gpt(id_historia)     
+            self.gpt_has_smells.set_id_gpt(id_historia) 
+            self.gpt_has_smells.set_descricao_smell(descricao)     
             db.session.add(self.gpt_has_smells)
             db.session.commit()
-            self.gpt_has_smells.set_descricao_smell("") 
         return "Success", 200
