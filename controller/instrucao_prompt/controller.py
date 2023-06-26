@@ -5,7 +5,12 @@ from model import db
 class PromptInstrucaoController:
     def get_instrucoes(self, user_id):
         instrucoes = Prompts.query.filter(Prompts.usuario_id == user_id)
-        return instrucoes
+        instrucoes_lista = []
+        for instrucoes_gpt in instrucoes:
+            instrucoes_lista.append({
+                'instrucao': instrucoes_gpt.instrucao,
+            })
+        return instrucoes_lista
 
     def insert(self, user_id, instrucao):
         prompt_model = Prompts()
