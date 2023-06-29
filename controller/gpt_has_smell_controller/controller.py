@@ -31,9 +31,10 @@ class GptHasSmellController:
             else:
                 id_smell_count[id_smell] = 1
         for chave, valor in id_smell_count.items():
-            print(valor)
-            print("<< --------^^--------")
-            final_dict[smells[int(chave)-1]['nome']] = valor
+            try:
+                final_dict[smells[int(chave)-1]['nome']] = valor
+            except Exception as e:
+                print("Error " + str(e))
         return final_dict
 
     def post_smells(self, id_smells, descricao, id_historia):
